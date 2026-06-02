@@ -1,153 +1,323 @@
 :root {
-  color-scheme: light;
+  --bg: #0f172a;
+  --surface: #111827;
+  --surface-alt: #1f2937;
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --border: rgba(148, 163, 184, 0.18);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+  --accent-soft: rgba(34, 197, 94, 0.18);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.16);
+  --shadow: 0 32px 80px rgba(15, 23, 42, 0.28);
+  --radius: 24px;
+  --radius-sm: 14px;
+  --space-xs: 0.6rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --transition: 180ms ease;
+  color-scheme: dark;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f5f6f8;
-  color: #1b1d21;
+  background: radial-gradient(circle at top, rgba(34, 197, 94, 0.09), transparent 24%), #0b1220;
+  color: var(--text);
 }
 
+/* Base reset */
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f5f6f8 0%, #ffffff 100%);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Layout */
 .page-shell {
-  max-width: 860px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.page-header {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.75rem 1.5rem;
+  box-shadow: var(--shadow);
 }
 
 .page-header h1 {
-  margin: 0 0 0.35rem;
-  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
 }
 
 .page-header p {
   margin: 0;
-  color: #4d5159;
-  line-height: 1.6;
+  color: var(--muted);
+  max-width: 60ch;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
+/* Section cards */
 .habit-form-section,
 .habit-list-section {
-  margin-top: 2rem;
-  background: #ffffff;
-  border: 1px solid #d6d8dc;
-  border-radius: 16px;
-  padding: 1.4rem;
-  box-shadow: 0 16px 32px rgba(44, 53, 72, 0.07);
+  margin-top: var(--space-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow);
 }
 
+.habit-list-section h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Form styling */
 .habit-form {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .field-group {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 label {
+  font-size: 0.98rem;
   font-weight: 600;
-  color: #242731;
+  color: var(--text);
 }
 
 input,
-select,
-button {
-  font: inherit;
-}
-
-input[type="text"],
-input[type="number"],
 select {
   width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid #ccd0d7;
-  border-radius: 12px;
-  background: #fbfcfd;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  padding: 1rem 1.1rem;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
+input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+input:focus,
 select:focus {
   outline: none;
-  border-color: #5b83ff;
-  box-shadow: 0 0 0 4px rgba(91, 131, 255, 0.14);
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.13);
+  transform: translateY(-1px);
 }
 
-.button-group {
-  margin-top: 0.5rem;
+select {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
 }
 
-button[type="submit"] {
-  width: max-content;
-  padding: 0.95rem 1.4rem;
-  border: none;
-  border-radius: 999px;
-  background-color: #2558ff;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+select option {
+  background: var(--surface);
+  color: var(--text);
 }
 
-button[type="submit"]:hover {
-  background-color: #1f4de1;
-}
-
-.form-error {
-  min-height: 1.5rem;
-  margin-top: 0.6rem;
-  color: #c21f3a;
-  font-weight: 600;
-}
-
-.habit-list-section h2 {
-  margin-top: 0;
-  font-size: 1.25rem;
-  color: #242731;
-}
-
-.habit-list {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.habit-card {
-  display: grid;
-  gap: 0.75rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid #e0e4ea;
-  border-radius: 16px;
-  background: #fbfdff;
-}
-
-.habit-card header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.habit-card .habit-title {
+#total-habits {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--accent);
+}
+
+label[for="total-habits"] {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+button {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.95rem 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+#addhabitbtn {
+  background: var(--accent);
+  color: #0f172a;
+  box-shadow: 0 14px 28px rgba(34, 197, 94, 0.18);
+}
+
+#addhabitbtn:hover {
+  background: #16a34a;
+}
+
+#delhabitbtn {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fee2e2;
+}
+
+#delhabitbtn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* Error messaging */
+#form-error,
+.form-error {
+  min-height: 1.4rem;
+  margin-top: 0.6rem;
+  color: #fca5a5;
   font-weight: 700;
 }
 
-.habit-card .habit-meta {
+/* Habit list styling */
+#habit-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+#habit-list li {
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  color: #5b616a;
-  font-size: 0.95rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--surface-alt);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+#habit-list li:hover {
+  transform: translateY(-1px);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+#habit-list li button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+#habit-list li button:first-of-type {
+  margin-left: auto;
+  background: var(--accent);
+  color: #0f172a;
+}
+
+#habit-list li button:first-of-type:hover {
+  background: #16a34a;
+}
+
+#habit-list li button:nth-of-type(2) {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fee2e2;
+}
+
+#habit-list li button:nth-of-type(2):hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+#habit-list li button + button {
+  margin-left: 0.75rem;
+}
+
+#habit-list li.done {
+  opacity: 0.78;
+}
+
+#habit-list li.done {
+  text-decoration: line-through;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .page-shell {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .habit-form-section,
+  .habit-list-section {
+    padding: 1.5rem;
+  }
+
+  #habit-list li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #habit-list li button:first-of-type {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-header,
+  .habit-form-section,
+  .habit-list-section {
+    border-radius: 18px;
+  }
+
+  .button-group {
+    justify-content: stretch;
+  }
+
+  #habit-list li {
+    padding: 1rem;
+  }
+
+  #habit-list li button {
+    width: 100%;
+  }
+
+  #habit-list li button + button {
+    margin-left: 0;
+  }
 }
 
 .habit-card .habit-status {
@@ -156,15 +326,15 @@ button[type="submit"]:hover {
   gap: 0.35rem;
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
-  background: #eef2ff;
-  color: #2f40bf;
+  background: var(--accent-soft);
+  color: #0b2b7a;
   font-size: 0.85rem;
   font-weight: 700;
 }
 
 .habit-card.done .habit-title,
 .habit-card.done .habit-meta {
-  color: #6b7280;
+  color: #97a1ad;
 }
 
 .habit-card.done .habit-title {
@@ -173,6 +343,21 @@ button[type="submit"]:hover {
 
 .habit-card.done {
   opacity: 0.7;
+}
+
+/* Prominent total number style */
+#total-habits {
+  margin: 0;
+  font-size: 2.4rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Small label for the total number to sit above/beside it */
+.field-group > label[for="total-habits"] {
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 @media (max-width: 560px) {

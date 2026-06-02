@@ -22,7 +22,6 @@ class Habit{
 
     }
 
-
 }
 
 const addHabit = () => {
@@ -33,16 +32,20 @@ const addHabit = () => {
 
         let errormsg = document.createElement("p");
         errormsg.textContent = "Please fill in all fields.";
+        document.getElementById("form-error").innerHTML = "";
         document.getElementById("form-error").appendChild(errormsg);
        
     }else if(habitinput.value.length < 3){
 
         let errormsg = document.createElement("p");
         errormsg.textContent = "Habit name must be at least 3 characters long.";
+        document.getElementById("form-error").innerHTML = "";
         document.getElementById("form-error").appendChild(errormsg);
        
     }
     else{
+       // tp clear any error messages that were there from invalid inputs
+         document.getElementById("form-error").innerHTML = "";
 
         //this is to add the habit to the allHabits array and create a button to update the streak when the habit is done for the day
      
