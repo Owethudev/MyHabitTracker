@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="page-header">
+      <h1>Habit Tracker Summary</h1>
+      <p>Track your daily habits with a simple add form and a habit list.</p>
+    </header>
+
+    <section class="habit-form-section">
+      
+        <div class="field-group">
+          <label for="total-habits">Total Habits</label>
+        <p id="total-habits">0</p>
+          </div>
+
+        <div class="field-group">
+          <label for="habit-name">Habit name</label>
+          <input type="text" id="habit-name" name="habit-name" placeholder="e.g. Read for 20 minutes" required>
+        </div>
+
+        <div class="field-group">
+          <label for="habit-target">Weekly target</label>
+          <input type="number" id="habit-target" name="habit-target" min="1" max="7" placeholder="7" required>
+        </div>
+
+        <div class="field-group">
+          <label for="habit-category">Category</label>
+          <select id="habit-category" name="habit-category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="health">Health</option>
+            <option value="learning">Learning</option>
+            <option value="productivity">Productivity</option>
+            <option value="wellbeing">Wellbeing</option>
+          </select>
+        </div>
+
+        <div class="field-group button-group">
+          <button id="addhabitbtn">Add Habit</button>
+          <button id="delhabitbtn">Delete Habit</button>
+        </div>
+     
+
+      <div id="form-error" class="form-error" aria-live="polite"></div>
+    </section>
+
+    <section class="habit-list-section">
+      <h2>Your habits</h2>
+      <div id="habit-list" class="habit-list" aria-live="polite">
+        <!-- Habit cards will be rendered here by JavaScript -->
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
