@@ -51,6 +51,7 @@ const addHabit = () => {
      
      let habit = new Habit(habitinput.value, categoryinput.value, Number(weeklytargetinput.value), 0, false);
      allHabits.push(habit);
+     
      let habitElement = document.createElement("li");
      habitElement.textContent= habit.summary();
      document.getElementById("habit-list").appendChild(habitElement);
